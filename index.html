@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chocolate Embajador · Edición Navidad 2026 | Cortés Hermanos</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans (matching the attached Framer design) + Playfair Display for heritage touches -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cortes: {
+              red: "#A31A2C",
+              darkred: "#821221",
+              cacao: "#120806",
+              cacaolight: "#1C0D0A",
+              cardbg: "#FAF8F5",
+              inputbg: "#F2EEE9",
+              gold: "#C69C35",
+              goldfoil: "#E5CE97",
+              muted: "#756561",
+              border: "#E2DDD6"
+            }
+          },
+          fontFamily: {
+            sans: ["'Plus Jakarta Sans'", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+            serif: ["'Playfair Display'", "Georgia", "serif"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #120806;
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Festive Bokeh Background matching the attached image */
+    .hero-bokeh-bg {
+      background-color: #120806;
+      background-image: 
+        radial-gradient(circle at 45% 25%, rgba(160, 60, 30, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 20% 35%, rgba(210, 150, 60, 0.14) 0%, transparent 35%),
+        radial-gradient(circle at 65% 15%, rgba(190, 80, 40, 0.16) 0%, transparent 40%),
+        radial-gradient(circle at 35% 60%, rgba(140, 40, 25, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 80% 45%, rgba(200, 130, 50, 0.12) 0%, transparent 38%);
+    }
+
+    /* 3D Realistic Chocolate Bar (Studio Lighting & Physical Depth) */
+    .choco-stage {
+      perspective: 1200px;
+    }
+
+    .choco-bar-3d {
+      transform: rotate(-7.5deg) rotateX(6deg) rotateY(-4deg);
+      transform-style: preserve-3d;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      box-shadow: 
+        -20px 40px 70px -15px rgba(0, 0, 0, 0.95),
+        -5px 15px 30px -10px rgba(0, 0, 0, 0.8),
+        0 0 50px rgba(138, 23, 42, 0.25);
+    }
+
+    .choco-bar-3d:hover {
+      transform: rotate(-4.5deg) rotateX(2deg) rotateY(-1.5deg) translateY(-5px);
+      box-shadow: 
+        -25px 50px 85px -15px rgba(0, 0, 0, 0.95),
+        -8px 20px 40px -10px rgba(0, 0, 0, 0.85),
+        0 0 65px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Chocolate Cube Realistic Bevels & Sheen */
+    .choco-cube {
+      background: linear-gradient(135deg, #4A2718 0%, #30170D 50%, #1E0E08 100%);
+      box-shadow: 
+        inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.22),
+        inset -1.5px -1.5px 2px rgba(0, 0, 0, 0.85),
+        1px 1px 2px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+    .choco-cube::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 2px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+      box-shadow: inset 1px 1px 1px rgba(255,255,255,0.15), inset -1px -1px 1px rgba(0,0,0,0.5);
+    }
+
+    /* Packaging Foil Trim */
+    .gold-foil-edge {
+      background: linear-gradient(135deg, #C59B27 0%, #FED65B 45%, #AA7C11 70%, #FFE088 100%);
+    }
+
+    /* Smooth tab transitions */
+    .view-container {
+      transition: opacity 0.2s ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-cortes-red selection:text-white">
+
+  <!-- TOP BAR: MODE SELECTOR & ASSIGNMENT CONTROLS -->
+  <aside class="bg-black/90 text-white border-b border-white/10 px-4 py-2 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+      
+      <!-- Cortés Hermanos Official Header Wordmark -->
+      <div class="flex items-center gap-3">
+        <img src="assets/cortes-logo-gold.svg" alt="Cortés Hermanos" class="h-6 w-auto inline-block"/>
+        <span class="text-white/30 hidden sm:inline">•</span>
+        <span class="text-white/90 font-medium hidden sm:inline">Tarea 4: Mapa Visual Digital · Chocolate Embajador</span>
+      </div>
+
+      <!-- Segmented View Controller Tabs -->
+      <nav class="flex items-center bg-white/10 p-1 rounded-lg border border-white/10" aria-label="Selector de Vistas">
+        <button id="btnNavLanding" onclick="switchMainView('landing')" class="px-3.5 py-1.5 rounded-md font-bold transition-all bg-cortes-red text-white shadow-sm flex items-center gap-1.5">
+          <span>1. Landing en Vivo</span>
+        </button>
+        <button id="btnNavWireframe" onclick="switchMainView('wireframe')" class="px-3.5 py-1.5 rounded-md font-bold transition-all text-white/70 hover:text-white flex items-center gap-1.5">
+          <span>2. Wireframe / Mapa Visual (Entregable)</span>
+        </button>
+        <button id="btnNavDoc" onclick="switchMainView('doc')" class="px-3.5 py-1.5 rounded-md font-bold transition-all text-white/70 hover:text-white flex items-center gap-1.5">
+          <span>3. Documento &amp; Métricas</span>
+        </button>
+      </nav>
+
+      <!-- INSTAGRAM LINK (TOP RIGHT) -->
+      <a href="https://www.instagram.com/corteshnosrd/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-gradient-to-r from-[#833ab4]/30 via-[#fd1d1d]/30 to-[#fcb045]/30 hover:from-[#833ab4]/60 hover:via-[#fd1d1d]/60 hover:to-[#fcb045]/60 border border-pink-400/50 hover:border-pink-300 text-white px-3.5 py-1.5 rounded-full transition-all duration-200 group shadow-sm" title="Instagram Oficial: @corteshnosrd">
+        <svg class="w-4 h-4 text-pink-400 group-hover:scale-110 transition-transform shrink-0" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        <span class="font-bold text-[11px] tracking-wide">@corteshnosrd</span>
+      </a>
+
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 1: HERO & LANDING PAGE EXACT MATCHING USER'S ATTACHED DESIGN         -->
+  <!-- ========================================================================= -->
+  <main id="viewLandingPage" class="view-container flex-grow hero-bokeh-bg">
+    
+    <!-- MAIN HERO SECTION (EXACT LAYOUT FROM USER'S ATTACHED IMAGE) -->
+    <section class="max-w-7xl mx-auto px-6 pt-12 pb-24 lg:pt-16 lg:pb-32" id="hero">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- =================================================================== -->
+        <!-- LEFT COLUMN: BRANDING, HEADLINE, AND TILTED CHOCOLATE BAR MOCKUP   -->
+        <!-- =================================================================== -->
+        <div class="lg:col-span-7 space-y-8">
+          
+          <!-- Brand Logo Header Cluster -->
+          <div class="space-y-3">
+            <!-- Authentic Chocolate Embajador Wordmark from the user's design -->
+            <div class="flex items-center gap-3">
+              <img src="assets/cortes-logo-white.svg" alt="Cortés Hermanos" class="h-8 w-auto block"/>
+              <div class="h-6 w-px bg-white/20"></div>
+              <div class="flex flex-col">
+                <span class="text-[10px] font-bold tracking-[0.25em] uppercase text-white/80">CHOCOLATE</span>
+                <span class="font-extrabold text-2xl tracking-tight text-white leading-tight">Embajador</span>
+              </div>
+            </div>
+
+            <!-- Red Edition Tag -->
+            <div class="text-xs font-bold tracking-[0.2em] uppercase text-[#D87878] pt-1">
+              EDICIÓN NAVIDAD 2026
+            </div>
+          </div>
+
+          <!-- The Big Bold Headline (3 lines, exact typography from uploaded image) -->
+          <h1 class="text-4xl sm:text-5xl md:text-[56px] font-extrabold text-white tracking-tight leading-[1.08] max-w-xl">
+            Esta Navidad,<br/>
+            la tradición<br/>
+            lleva tu apellido.
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="text-base sm:text-lg text-white/80 font-normal max-w-lg leading-relaxed">
+            Personaliza tu empaque, descárgalo gratis y participa por una canasta navideña.
+          </p>
+
+          <!-- TILTED CHOCOLATE BAR / PACKAGING SLEEVE SHOWCASE -->
+          <div class="pt-2 sm:pt-4 pb-4">
+            
+            <!-- Selector de Vista Mockup: Barra 3D Fotorrealista (Predeterminada) vs Envoltura Plana -->
+            <div class="flex items-center gap-2 mb-4">
+              <button type="button" id="btnView3D" onclick="switchPreviewMode('3d')" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-gold text-brand-ink shadow-sm flex items-center gap-1.5 transition-all">
+                <span>🍫</span>
+                <span>Barra de Chocolate 3D</span>
+              </button>
+              <button type="button" id="btnViewSleeve" onclick="switchPreviewMode('sleeve')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/10 text-white/70 hover:text-white hover:bg-white/20 transition-all flex items-center gap-1.5">
+                <span>✨</span>
+                <span>Envoltura de Colección</span>
+              </button>
+              <span class="text-[11px] text-brand-gold/75 ml-auto hidden sm:inline">Edición Especial 2026</span>
+            </div>
+
+            <!-- MODE 1: BARRA DE CHOCOLATE 3D FOTORREALISTA (INTEGRADA A LA ETIQUETA) -->
+            <div id="preview3DContainer" class="choco-stage w-full max-w-xl mx-auto sm:mx-0 py-6 sm:py-8">
+              
+              <div class="choco-bar-3d w-full max-w-[540px] aspect-[540/265] rounded-2xl flex overflow-hidden border border-amber-600/30 relative select-none">
+                
+                <!-- SECCIÓN IZQUIERDA: ENVOLTURA ROJA NAVIDEÑA EMBAJADOR (62% ancho) -->
+                <div class="w-[62%] h-full relative p-4 sm:p-5 flex flex-col justify-between overflow-hidden" 
+                     style="background: linear-gradient(135deg, #8A172A 0%, #630C19 50%, #3A050D 100%);">
+                  
+                  <!-- Reflejo cilíndrico en el lomo 3D izquierdo -->
+                  <div class="absolute top-0 bottom-0 left-0 w-3 bg-gradient-to-r from-white/25 via-white/10 to-transparent pointer-events-none"></div>
+                  
+                  <!-- Brillo sutil diagonal de papel satinado -->
+                  <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.05] to-transparent pointer-events-none"></div>
+
+                  <!-- Encabezado: Logo Cortés Hermanos + Embajador + Estrella Dorada -->
+                  <div class="relative z-10 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <img src="assets/cortes-logo-white.svg" alt="Cortés" class="h-4 sm:h-5 w-auto block drop-shadow-sm"/>
+                      <div class="h-3 w-px bg-white/30"></div>
+                      <span class="font-extrabold text-white text-sm sm:text-base tracking-tight leading-none drop-shadow-sm">Embajador</span>
+                    </div>
+                    <!-- Estrella dorada de 4 puntas -->
+                    <div class="text-[#FED65B] text-base sm:text-lg leading-none select-none drop-shadow">✦</div>
+                  </div>
+
+                  <!-- Centro: Tarjeta Marfil Inset integrada a la etiqueta física -->
+                  <div class="relative z-10 my-auto bg-[#FDFBF7] rounded-lg p-3 sm:p-4 text-center border border-[#D4AF37]/50 shadow-md relative overflow-hidden"
+                       style="box-shadow: inset 0 2px 4px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.35);">
+                    <!-- Filete dorado interior fino -->
+                    <div class="absolute inset-1 border border-[#D4AF37]/40 rounded pointer-events-none"></div>
+                    
+                    <div class="text-[8px] sm:text-[9px] font-bold tracking-[0.25em] text-[#8A172A] uppercase mb-0.5">
+                      FAMILIA
+                    </div>
+                    <div id="bar3DFamilySurname" class="font-serif font-black text-xl sm:text-2xl md:text-3xl text-[#670018] tracking-tight uppercase leading-none my-1 transition-all duration-300">
+                      TU APELLIDO
+                    </div>
+                  </div>
+
+                  <!-- Pie de envoltura: Lema Tradicional con borde dorado -->
+                  <div class="relative z-10 flex items-center justify-between text-[8px] sm:text-[9px] font-bold tracking-[0.16em] text-[#FED65B] uppercase pt-1 border-t border-[#D4AF37]/35">
+                    <span>EL SABOR DE ESTAR JUNTOS.</span>
+                    <span class="text-white/60 font-medium hidden sm:inline">NAVIDAD 2026</span>
+                  </div>
+
+                </div>
+
+                <!-- SECCIÓN DERECHA: TABLETA DE CHOCOLATE EXPUESTA EN BANDEJA DORADA (38% ancho) -->
+                <div class="w-[38%] h-full gold-foil-edge p-2 sm:p-2.5 relative flex items-center justify-center shadow-inner">
+                  
+                  <!-- Base del chocolate con sombra profunda -->
+                  <div class="w-full h-full bg-[#1A0B06] rounded-xl p-1.5 sm:p-2 grid grid-cols-3 grid-rows-3 gap-1 sm:gap-1.5 shadow-2xl border border-black/50">
+                    
+                    <!-- 9 Cubos de Chocolate Dominicano con Relieves 3D -->
+                    <div class="choco-cube rounded-[3px]"></div>
+                    <div class="choco-cube rounded-[3px]"></div>
+                    <div class="choco-cube rounded-[3px]"></div>
+
+                    <div class="choco-cube rounded-[3px]"></div>
+                    <div class="choco-cube rounded-[3px]"></div>
+                    <div class="choco-cube rounded-[3px]"></div>
+
+                    <div class="choco-cube rounded-[3px]"></div>
+                    <div class="choco-cube rounded-[3px]"></div>
+                    <div class="choco-cube rounded-[3px]"></div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- MODE 2: ENVOLTURA PLANA DE COLECCIÓN (CON LOGO OFICIAL DE CORTÉS EMBAJADOR) -->
+            <div id="previewSleeveContainer" class="hidden relative w-full max-w-xl mx-auto sm:mx-0 rounded-2xl overflow-hidden shadow-2xl p-6 sm:p-8 text-center text-white border-2 border-[#D4AF37] transition-all duration-300 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]" style="background: linear-gradient(135deg, #6A0E1A 0%, #420810 45%, #1A060A 100%);">
+              
+              <!-- Recuadro Dorado Interior Fino -->
+              <div class="absolute inset-2 sm:inset-3 border border-[#D4AF37]/45 rounded-xl pointer-events-none"></div>
+
+              <!-- Encabezado: Logo Oficial de Cortés Hermanos y Chocolate Embajador -->
+              <div class="relative z-10 pt-1 pb-1">
+                <img src="assets/cortes-logo-gold.svg" alt="Cortés Hermanos" class="h-9 sm:h-11 w-auto mx-auto block mb-1 drop-shadow"/>
+                <div class="text-[9px] sm:text-[10px] font-bold tracking-[0.25em] text-[#D4AF37] uppercase">
+                  REPÚBLICA DOMINICANA · DESDE 1929
+                </div>
+                <h3 class="font-serif font-black text-2xl sm:text-3xl md:text-4xl text-white tracking-wide mt-0.5 drop-shadow-sm">
+                  Chocolate Embajador
+                </h3>
+                <div class="w-20 sm:w-28 h-[2px] bg-[#D4AF37] mx-auto my-2.5"></div>
+              </div>
+
+              <!-- Placa Central de la Familia -->
+              <div class="relative z-10 bg-[#0F0407]/75 border-2 border-[#D4AF37] rounded-lg p-5 sm:p-7 my-2 shadow-2xl relative">
+                <div class="absolute inset-1.5 border border-[#D4AF37]/35 rounded pointer-events-none"></div>
+                
+                <div class="text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#EAD186]">
+                  EDICIÓN ESPECIAL DE NAVIDAD 2026
+                </div>
+                
+                <div class="font-serif font-black text-2xl sm:text-4xl md:text-5xl text-white tracking-wide uppercase my-1.5 sm:my-2.5 dynamicFamilySurnameWithPrefix drop-shadow-md">
+                  FAMILIA TU APELLIDO
+                </div>
+                
+                <div class="font-serif italic text-xs sm:text-sm text-[#D4AF37]">
+                  &ldquo;El sabor de estar juntos&rdquo;
+                </div>
+              </div>
+
+              <!-- Dedicatoria y Leyenda Tradicional -->
+              <div class="relative z-10 pt-1 space-y-1">
+                <div class="text-[11px] sm:text-xs text-[#FFE088] font-semibold tracking-wide">
+                  <span class="dynamicDedication">Para: Tu Familia</span> · <span class="dynamicProvinceLabel">República Dominicana</span>
+                </div>
+                <div class="text-[9px] sm:text-[10px] text-white/80 font-normal tracking-wide">
+                  Cacao 100% Dominicano · Tradición de Nuestras Familias desde 1929
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Pie interactivo con icono -->
+            <div class="pt-2 flex items-center justify-between text-xs text-white/60 font-medium">
+              <div class="flex items-center gap-2">
+                <span class="text-sm select-none text-brand-gold">⤢</span>
+                <span>Un empaque único. Una tradición de todos.</span>
+              </div>
+              <span class="text-[11px] text-brand-gold/75">Descarga lista para imprenta</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- RIGHT COLUMN: THE FLOATING WHITE CARD (EXACT LAYOUT FROM IMAGE)     -->
+        <!-- =================================================================== -->
+        <div class="lg:col-span-5 flex flex-col items-center lg:items-end">
+          
+          <!-- The High-Contrast Floating White Card -->
+          <div class="bg-cortes-cardbg text-cortes-cacao rounded-[28px] sm:rounded-[32px] p-8 sm:p-10 shadow-2xl w-full max-w-md border border-white/20">
+            
+            <!-- Card Header -->
+            <div class="space-y-1.5 mb-6">
+              <div class="text-[11px] font-bold tracking-[0.2em] uppercase text-cortes-red">
+                HECHO PARA COMPARTIR
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-cortes-cacao tracking-tight">
+                Un detalle. Tu historia.
+              </h2>
+              <p class="text-sm text-cortes-muted">
+                Dale a la tradición el nombre de tu familia.
+              </p>
+            </div>
+
+            <!-- The Form -->
+            <form id="heroCustomizerForm" class="space-y-4" onsubmit="event.preventDefault(); handleLiveFormSubmit();">
+              
+              <!-- Row 1: Nombre & Apellido side by side -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="leadNombre" class="block text-xs font-semibold text-cortes-cacao mb-1.5">
+                    Nombre
+                  </label>
+                  <input 
+                    type="text" 
+                    id="leadNombre" 
+                    value="" 
+                    required
+                    placeholder="Tu nombre" 
+                    class="w-full rounded-xl border border-transparent bg-cortes-inputbg px-3.5 py-2.5 text-sm text-cortes-cacao focus:border-cortes-red focus:bg-white focus:ring-1 focus:ring-cortes-red focus:outline-none transition-all placeholder:text-cortes-muted/50"
+                  />
+                </div>
+
+                <div>
+                  <label for="leadApellido" class="block text-xs font-semibold text-cortes-cacao mb-1.5">
+                    Apellido
+                  </label>
+                  <input 
+                    type="text" 
+                    id="leadApellido" 
+                    value="" 
+                    required
+                    placeholder="Tu apellido" 
+                    class="w-full rounded-xl border border-transparent bg-cortes-inputbg px-3.5 py-2.5 text-sm font-bold text-cortes-cacao focus:border-cortes-red focus:bg-white focus:ring-1 focus:ring-cortes-red focus:outline-none transition-all placeholder:text-cortes-muted/50"
+                  />
+                </div>
+              </div>
+
+              <!-- Row 2: Correo -->
+              <div>
+                <label for="leadCorreo" class="block text-xs font-semibold text-cortes-cacao mb-1.5">
+                  Correo
+                </label>
+                <input 
+                  type="email" 
+                  id="leadCorreo" 
+                  value="" 
+                  required
+                  placeholder="tu@correo.com" 
+                  class="w-full rounded-xl border border-transparent bg-cortes-inputbg px-3.5 py-2.5 text-sm text-cortes-cacao focus:border-cortes-red focus:bg-white focus:ring-1 focus:ring-cortes-red focus:outline-none transition-all placeholder:text-cortes-muted/50"
+                />
+              </div>
+
+              <!-- Row 3: Provincia -->
+              <div>
+                <label for="leadProvincia" class="block text-xs font-semibold text-cortes-cacao mb-1.5">
+                  Provincia
+                </label>
+                <select 
+                  id="leadProvincia" 
+                  required
+                  class="w-full rounded-xl border border-transparent bg-cortes-inputbg px-3.5 py-2.5 text-sm text-cortes-cacao focus:border-cortes-red focus:bg-white focus:ring-1 focus:ring-cortes-red focus:outline-none transition-all cursor-pointer"
+                >
+                  <option value="" disabled>Selecciona tu provincia</option>
+                  <option value="Distrito Nacional" selected>Distrito Nacional</option>
+                  <option value="Santo Domingo">Santo Domingo</option>
+                  <option value="Santiago">Santiago</option>
+                  <option value="La Vega">La Vega</option>
+                  <option value="San Cristóbal">San Cristóbal</option>
+                  <option value="Puerto Plata">Puerto Plata</option>
+                  <option value="Duarte">Duarte (San Francisco)</option>
+                  <option value="La Romana">La Romana</option>
+                  <option value="San Pedro de Macorís">San Pedro de Macorís</option>
+                  <option value="Espaillat">Espaillat (Moca)</option>
+                  <option value="La Altagracia">La Altagracia (Punta Cana)</option>
+                  <option value="Diáspora en el Exterior">Diáspora (NY, Miami, Madrid...)</option>
+                  <option value="Otras Provincias">Otras Provincias</option>
+                </select>
+              </div>
+
+              <!-- CTA Button: Red, bold, with arrow (exact match) -->
+              <div class="pt-2">
+                <button 
+                  type="submit" 
+                  id="btnCrearRegalo" 
+                  class="w-full bg-cortes-red hover:bg-cortes-darkred text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all shadow-md flex items-center justify-center gap-2"
+                >
+                  <span>Crear mi regalo familiar</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+
+              <!-- Giveaway Incentive inside card (exact match) -->
+              <div class="pt-3 border-t border-cortes-border/60 flex items-start gap-3">
+                <div class="text-xl select-none text-cortes-muted">🎁</div>
+                <div class="space-y-0.5">
+                  <div class="font-bold text-xs text-cortes-cacao">La magia no termina aquí.</div>
+                  <div class="text-[11px] text-cortes-muted">Participa por una canasta navideña.</div>
+                </div>
+              </div>
+
+            </form>
+
+            <!-- Success State Notification -->
+            <div id="cardSuccessNotice" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-center space-y-3">
+              <div class="text-xs font-bold text-emerald-800">
+                ¡Empaque generado para la <span id="successNoticeSurname" class="uppercase">Familia Pérez</span>!
+              </div>
+              <div class="flex items-center justify-center gap-2">
+                <button onclick="downloadCustomSleevePNG()" class="bg-cortes-red text-white text-xs font-bold py-2 px-3 rounded-lg shadow-sm">
+                  Descargar Imagen HD
+                </button>
+                <button onclick="shareViaWhatsApp()" class="bg-white border border-slate-300 text-xs font-bold py-2 px-3 rounded-lg">
+                  WhatsApp
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Privacy Link below card (exact match from attached image) -->
+          <div class="mt-4 flex items-center gap-1.5 text-xs text-white/50 hover:text-white/80 transition-colors">
+            <span>🔒</span>
+            <button type="button" onclick="openPrivacyModal()" class="hover:underline">Política de privacidad</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TRADITION & STORY SECTION (CORTÉS HERMANOS & CHOCOLATE EMBAJADOR) -->
+    <section class="bg-white text-cortes-cacao py-20 border-t border-white/10" id="historia">
+      <div class="max-w-7xl mx-auto px-6">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-5 space-y-4">
+            <span class="text-xs font-bold text-cortes-red uppercase tracking-widest block">
+              Cortés Hermanos · Desde 1929
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-cortes-cacao">
+              Más de 90 navidades uniendo a las familias dominicanas.
+            </h2>
+            <p class="text-base text-cortes-muted leading-relaxed">
+              En cada hogar dominicano, la Nochebuena comienza cuando el aroma a canela, clavo dulce y Chocolate Embajador inunda la cocina al regresar de la Misa del Gallo. Este 2026, llevamos el apellido de tu familia grabado en la historia.
+            </p>
+            <div class="p-4 rounded-xl bg-cortes-cardbg border border-cortes-border text-sm italic text-cortes-red font-medium">
+              &ldquo;No hay Navidad dominicana sin una taza humeante de Chocolate Embajador compartido en familia.&rdquo;
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="p-6 rounded-2xl bg-cortes-cardbg border border-cortes-border space-y-2">
+              <h3 class="font-bold text-lg text-cortes-cacao">Cacao 100% Dominicano</h3>
+              <p class="text-xs text-cortes-muted leading-relaxed">
+                Cosechado en los valles del Cibao y la región oriental por agricultores que preservan la calidad del grano criollo.
+              </p>
+            </div>
+            <div class="p-6 rounded-2xl bg-cortes-cardbg border border-cortes-border space-y-2">
+              <h3 class="font-bold text-lg text-cortes-cacao">Especias Tradicionales</h3>
+              <p class="text-xs text-cortes-muted leading-relaxed">
+                Canela de monte, clavo dulce y nuez moscada con el tostado artesanal inconfundible de Cortés Hermanos.
+              </p>
+            </div>
+            <div class="p-6 rounded-2xl bg-cortes-cardbg border border-cortes-border space-y-2">
+              <h3 class="font-bold text-lg text-cortes-cacao">Sorteo Semanal</h3>
+              <p class="text-xs text-cortes-muted leading-relaxed">
+                3 sorteos de canastas navideñas oficiales con productos Cortés y entrega gratis a domicilio en RD.
+              </p>
+            </div>
+            <div class="p-6 rounded-2xl bg-cortes-cardbg border border-cortes-border space-y-2">
+              <h3 class="font-bold text-lg text-cortes-cacao">Conexión con la Diáspora</h3>
+              <p class="text-xs text-cortes-muted leading-relaxed">
+                El sabor de Quisqueya en Nueva York, Boston, Miami, Madrid y cualquier lugar donde se celebre la Navidad.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white/70 py-10 border-t border-white/10 text-xs">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <img src="assets/cortes-logo-white.svg" alt="Cortés Hermanos" class="h-6 w-auto block"/>
+          <span>&copy; 2026 Cortés Hermanos &amp; Co. Todos los derechos reservados.</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="https://www.instagram.com/corteshnosrd/" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400 flex items-center gap-1.5 transition-colors font-bold text-white/90">
+            <svg class="w-3.5 h-3.5 text-pink-400" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            <span>Instagram: @corteshnosrd</span>
+          </a>
+          <span>•</span>
+          <button onclick="switchMainView('wireframe')" class="text-cortes-gold hover:underline font-bold">
+            Ver Wireframe / Mapa Visual
+          </button>
+          <span>•</span>
+          <button onclick="openPrivacyModal()" class="hover:underline">
+            Política de Privacidad
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Hidden Canvas for HD Image Generation (1800x1200 print-ready resolution) -->
+    <canvas id="sleeveCanvas" width="1800" height="1200" class="hidden"></canvas>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 2: WIREFRAME & MAPA VISUAL ACADÉMICO (RÉPLICA EXACTA DEL ENTREGABLE)  -->
+  <!-- ========================================================================= -->
+  <section id="viewWireframePage" class="view-container hidden bg-[#F1F3F7] text-slate-900 py-10 px-4 sm:px-6 flex-grow">
+    <div class="max-w-7xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-200 p-6 sm:p-10 space-y-8">
+      
+      <!-- Top Title Header exactly matching the professor's deliverable template -->
+      <div class="text-center pb-6 border-b border-slate-200 space-y-1">
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-[#1B365D] tracking-tight uppercase">
+          MAPA VISUAL Y EXPLICACIÓN DE UNA PÁGINA
+        </h2>
+        <p class="text-sm sm:text-base text-slate-500 font-medium">
+          Ejemplo: <strong class="text-cortes-red">Campaña Navideña Chocolate Embajador · Cortés Hermanos &amp; Co.</strong>
+        </p>
+      </div>
+
+      <!-- MAIN 3-COLUMN WIREFRAME BLUEPRINT WITH 5 PILLARS AND DASHED ARROW CONNECTORS -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch relative">
+        
+        <!-- =================================================================== -->
+        <!-- LEFT COLUMN: 1. CANAL & 2. CONTENIDO                                -->
+        <!-- =================================================================== -->
+        <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+          
+          <!-- Box 1: CANAL (Purple Theme matching deliverable template) -->
+          <div class="p-5 rounded-2xl border-2 border-[#8B5CF6] bg-[#F5F3FF] space-y-3 shadow-xs relative">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-[#7C3AED] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                <!-- Megaphone / Speaker Icon -->
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-black text-sm text-[#5B21B6] uppercase tracking-wide">1. CANAL</h3>
+              </div>
+            </div>
+            
+            <div class="text-xs text-slate-700 leading-snug">
+              <strong class="text-[#5B21B6]">Instagram Ads (Anuncio en Feed) · WhatsApp</strong><br/>
+              <span class="text-slate-500 text-[11px]">Dirige tráfico cualificado a la página de destino.</span>
+            </div>
+
+            <!-- Authentic Instagram Ad Post Mockup -->
+            <div class="bg-white rounded-xl border border-slate-200 p-3 text-xs space-y-2.5 shadow-xs">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-amber-500 to-rose-600 text-white flex items-center justify-center font-bold text-[9px]">
+                    CE
+                  </div>
+                  <div>
+                    <div class="font-bold text-[11px] text-slate-900 leading-none">corteshnosrd</div>
+                    <div class="text-[9px] text-slate-400">Publicidad · Chocolate Embajador</div>
+                  </div>
+                </div>
+                <div class="text-slate-400 font-bold text-xs">•••</div>
+              </div>
+              
+              <!-- Ad Creative Image -->
+              <div class="bg-gradient-to-br from-[#2D0A0E] to-[#120406] text-white p-3.5 rounded-lg text-center space-y-1.5 border border-amber-900/30">
+                <div class="text-[8px] font-black tracking-widest text-[#D87878] uppercase">EDICIÓN NAVIDAD 2026</div>
+                <div class="text-xs font-black leading-tight text-white">Esta Navidad, la tradición lleva tu apellido</div>
+                <div class="w-16 h-7 mx-auto bg-gradient-to-r from-cortes-red to-[#500812] rounded border border-cortes-gold/60 flex items-center justify-center shadow-xs">
+                  <span class="text-[7px] font-black text-white uppercase">TU APELLIDO</span>
+                </div>
+              </div>
+
+              <!-- CTA Row in Ad -->
+              <div class="flex items-center justify-between pt-0.5">
+                <div class="bg-blue-600 text-white text-[9px] font-bold py-1 px-2.5 rounded flex items-center gap-1 shadow-2xs">
+                  <span>Más información</span>
+                  <span>&rsaquo;</span>
+                </div>
+                <div class="flex items-center gap-2 text-slate-400 text-xs">
+                  <span>♡</span>
+                  <span>💬</span>
+                  <span>↗</span>
+                  <span>🔖</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-[11px] text-slate-500 leading-snug">
+              Tráfico segmentado por intereses gastronómicos, tradiciones familiares y diáspora en época navideña.
+            </div>
+
+            <!-- Dotted Connector Indicator pointing to Browser (Desktop) -->
+            <div class="hidden lg:block absolute -right-6 top-1/2 -translate-y-1/2 text-purple-600 font-bold text-lg select-none">
+              &dash;&dash;&rsaquo;
+            </div>
+          </div>
+
+          <!-- Box 2: CONTENIDO (Green Theme matching deliverable template) -->
+          <div class="p-5 rounded-2xl border-2 border-[#10B981] bg-[#ECFDF5] space-y-3 shadow-xs relative">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-[#059669] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                <!-- Checklist / Bullet Icon -->
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-black text-sm text-[#065F46] uppercase tracking-wide">2. CONTENIDO</h3>
+              </div>
+            </div>
+
+            <ul class="text-xs text-slate-700 space-y-2 leading-relaxed">
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-600 font-black">&bull;</span>
+                <span><strong>Propuesta de valor clara:</strong> Personalización oficial del empaque con el apellido de la familia dominicana.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-600 font-black">&bull;</span>
+                <span><strong>Tableta física 3D en relieve:</strong> Barra de chocolate físico con 9 cubos de cacao en relieve y etiqueta fotorrealista.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-600 font-black">&bull;</span>
+                <span><strong>Prueba social y tradición:</strong> Recetas tradicionales y más de 90 años de historia de Cortés Hermanos desde 1929.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-600 font-black">&bull;</span>
+                <span><strong>Incentivo adicional:</strong> Participación directa en el sorteo semanal de canastas navideñas oficiales.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-600 font-black">&bull;</span>
+                <span><strong>Diseño simple y enfocado:</strong> Sin distracciones para maximizar la tasa de conversión de leads.</span>
+              </li>
+            </ul>
+
+            <!-- Dotted Connector Indicator pointing to Browser (Desktop) -->
+            <div class="hidden lg:block absolute -right-6 top-1/2 -translate-y-1/2 text-emerald-600 font-bold text-lg select-none">
+              &dash;&dash;&rsaquo;
+            </div>
+          </div>
+
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- CENTER COLUMN: THE BROWSER WIREFRAME SCHEMATIC                      -->
+        <!-- =================================================================== -->
+        <div class="lg:col-span-6 bg-white rounded-2xl border-2 border-slate-300 shadow-xl overflow-hidden flex flex-col justify-between">
+          
+          <!-- Browser Top Window Bar (Red, Yellow, Green Window Dots) -->
+          <div class="bg-[#F1F3F5] px-4 py-2.5 flex items-center justify-between border-b border-slate-200">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-[#EF4444] inline-block shadow-2xs"></span>
+              <span class="w-3 h-3 rounded-full bg-[#F59E0B] inline-block shadow-2xs"></span>
+              <span class="w-3 h-3 rounded-full bg-[#10B981] inline-block shadow-2xs"></span>
+            </div>
+            <div class="bg-white rounded-md px-4 py-0.5 text-[10px] text-slate-500 font-mono border border-slate-200 shadow-2xs">
+              https://navidad.chocolateembajador.com.do
+            </div>
+            <div class="text-[10px] text-slate-400 font-bold">
+              🔒 SSL Oficial
+            </div>
+          </div>
+
+          <!-- Browser Inner Navbar (Dark Navy matching template) -->
+          <div class="bg-[#162D4A] px-4 py-2 flex items-center justify-between text-white text-[10px]">
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-xs tracking-tight text-white uppercase">CHOCOLATE EMBAJADOR</span>
+            </div>
+            <div class="flex items-center gap-3 text-white/80 font-medium text-[9px]">
+              <span>Recetas</span>
+              <span>Beneficios</span>
+              <span>Tradición</span>
+              <span>Contacto</span>
+            </div>
+          </div>
+
+          <!-- Hero Section inside Browser Wireframe -->
+          <div class="bg-gradient-to-b from-[#1C0D0A] to-[#120705] p-5 text-white">
+            <div class="grid grid-cols-12 gap-3 items-center">
+              
+              <!-- Left: Brand Title & 3D Chocolate Bar preview -->
+              <div class="col-span-7 space-y-2.5">
+                <div class="text-[8px] font-black text-[#D87878] uppercase tracking-widest">
+                  EDICIÓN NAVIDAD 2026
+                </div>
+                <div class="text-sm sm:text-base font-black leading-tight text-white tracking-tight">
+                  Esta Navidad, la tradición lleva tu apellido
+                </div>
+                <p class="text-[9px] text-white/70 leading-snug">
+                  Personaliza tu empaque, descárgalo gratis y participa por una canasta navideña.
+                </p>
+
+                <!-- Mini Tilted 3D Chocolate Bar Mockup -->
+                <div class="pt-1.5">
+                  <div class="transform -rotate-4 bg-gradient-to-r from-cortes-red to-cortes-darkred p-2.5 rounded-xl flex items-center justify-between border border-cortes-gold shadow-md">
+                    <!-- Packaging sleeve -->
+                    <div class="flex-1 mr-2">
+                      <div class="flex items-center justify-between mb-0.5">
+                        <span class="text-[7px] font-black text-white">Embajador</span>
+                        <span class="text-amber-300 text-[8px]">✦</span>
+                      </div>
+                      <div class="bg-white rounded px-2 py-0.5 text-center shadow-xs">
+                        <div class="text-[5px] font-bold text-cortes-red uppercase">FAMILIA</div>
+                        <div class="text-[9px] font-black text-cortes-red uppercase">TU APELLIDO</div>
+                      </div>
+                      <div class="text-[5px] font-bold text-amber-200 tracking-wider mt-0.5">EL SABOR DE ESTAR JUNTOS.</div>
+                    </div>
+                    <!-- Chocolate tray cubes -->
+                    <div class="w-8 h-8 rounded bg-[#1A0B06] border border-cortes-gold grid grid-cols-3 gap-0.5 p-0.5 shrink-0">
+                      <div class="bg-[#4A2614] rounded-2xs"></div>
+                      <div class="bg-[#4A2614] rounded-2xs"></div>
+                      <div class="bg-[#4A2614] rounded-2xs"></div>
+                      <div class="bg-[#4A2614] rounded-2xs"></div>
+                      <div class="bg-[#4A2614] rounded-2xs"></div>
+                      <div class="bg-[#4A2614] rounded-2xs"></div>
+                      <div class="bg-[#4A2614] rounded-2xs"></div>
+                      <div class="bg-[#4A2614] rounded-2xs"></div>
+                      <div class="bg-[#4A2614] rounded-2xs"></div>
+                    </div>
+                  </div>
+                  <div class="text-[8px] text-white/50 mt-1">&angmsd; Barra 3D física con etiqueta personalizada en vivo.</div>
+                </div>
+              </div>
+
+              <!-- Right: Floating White Form Card -->
+              <div class="col-span-5 bg-white text-slate-900 rounded-xl p-3 shadow-lg space-y-2 border border-slate-200">
+                <div class="space-y-0.5">
+                  <div class="text-[7px] font-black text-cortes-red uppercase tracking-wider">HECHO PARA COMPARTIR</div>
+                  <div class="text-[11px] font-black text-slate-900 leading-tight">Un detalle. Tu historia.</div>
+                  <div class="text-[8px] text-slate-500">Dale a la tradición tu apellido.</div>
+                </div>
+
+                <!-- Input Fields inside Card -->
+                <div class="space-y-1.5 pt-0.5">
+                  <div class="grid grid-cols-2 gap-1">
+                    <div class="bg-slate-100 px-1.5 py-1 rounded text-[8px] text-slate-400">Nombre *</div>
+                    <div class="bg-slate-100 px-1.5 py-1 rounded text-[8px] font-bold text-slate-800">Apellido *</div>
+                  </div>
+                  <div class="bg-slate-100 px-1.5 py-1 rounded text-[8px] text-slate-400">Correo electrónico *</div>
+                  <div class="bg-slate-100 px-1.5 py-1 rounded text-[8px] text-slate-600 font-bold">Provincia: D.N. *</div>
+                  
+                  <!-- Form CTA Button -->
+                  <div class="bg-cortes-red hover:bg-[#8F1627] text-white text-center py-1.5 rounded-lg font-bold text-[9px] shadow-sm cursor-pointer transition-colors">
+                    Crear mi regalo familiar &rarr;
+                  </div>
+
+                  <div class="text-[7px] text-slate-400 text-center flex items-center justify-center gap-1 pt-0.5">
+                    <span>🔒</span>
+                    <span>Tus datos están seguros con nosotros</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Why Choose Us / Features section inside Wireframe (Matching template) -->
+          <div class="bg-white p-4 border-t border-slate-200 text-center space-y-2.5">
+            <h4 class="font-extrabold text-xs text-slate-800 tracking-tight">¿Por qué elegirnos?</h4>
+            <div class="grid grid-cols-3 gap-2 text-center">
+              
+              <div class="p-2 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                <div class="w-6 h-6 mx-auto rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-[10px]">
+                  🎓
+                </div>
+                <div class="font-bold text-[9px] text-slate-800 leading-tight">Cacao Dominicano</div>
+                <div class="text-[7px] text-slate-500 leading-snug">Cosechado en el Cibao y el Este con alta calidad.</div>
+              </div>
+
+              <div class="p-2 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                <div class="w-6 h-6 mx-auto rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-[10px]">
+                  🌿
+                </div>
+                <div class="font-bold text-[9px] text-slate-800 leading-tight">Especias de Monte</div>
+                <div class="text-[7px] text-slate-500 leading-snug">Canela, clavo dulce y tostado artesanal.</div>
+              </div>
+
+              <div class="p-2 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                <div class="w-6 h-6 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px]">
+                  🏛️
+                </div>
+                <div class="font-bold text-[9px] text-slate-800 leading-tight">Desde 1929</div>
+                <div class="text-[7px] text-slate-500 leading-snug">Más de 90 navidades uniendo a las familias.</div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Social Proof / Testimonial inside Wireframe (Matching template) -->
+          <div class="bg-slate-50 px-4 py-2.5 border-t border-slate-200 flex items-center gap-3">
+            <div class="w-7 h-7 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0">
+              CM
+            </div>
+            <div class="text-[9px] text-slate-600 leading-snug">
+              <strong class="text-slate-800">&ldquo;No hay Navidad sin una taza humeante de Chocolate Embajador compartido en familia.&rdquo;</strong>
+              <div class="text-[8px] text-slate-400 mt-0.5">&mdash; Carlos M. | Consumidor habitual de Chocolate Embajador</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- RIGHT COLUMN: 3. CTA, 4. DATO REQUERIDO, 5. KPI                     -->
+        <!-- =================================================================== -->
+        <div class="lg:col-span-3 flex flex-col justify-between space-y-5">
+          
+          <!-- Box 3: CTA (Orange/Amber Theme matching deliverable template) -->
+          <div class="p-4 sm:p-5 rounded-2xl border-2 border-[#F59E0B] bg-[#FFFBEB] space-y-2.5 shadow-xs relative">
+            <!-- Dotted Connector Indicator pointing from CTA to Browser (Desktop) -->
+            <div class="hidden lg:block absolute -left-6 top-1/2 -translate-y-1/2 text-amber-600 font-bold text-lg select-none">
+              &lsaquo;&dash;&dash;
+            </div>
+
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-[#D97706] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                <!-- Target / Compass Icon -->
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0013 3.06V1h-2v2.06A8.994 8.994 0 003.06 11H1v2h2.06A8.994 8.994 0 0011 20.94V23h2v-2.06A8.994 8.994 0 0020.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-black text-sm text-[#92400E] uppercase tracking-wide">3. CTA</h3>
+              </div>
+            </div>
+
+            <div class="text-xs text-slate-700 leading-snug">
+              <strong>Llamado a la acción claro y visible.</strong>
+            </div>
+
+            <!-- CTA Mockup Button -->
+            <div class="space-y-1">
+              <div class="text-[10px] text-slate-500 font-medium">Botón principal:</div>
+              <div class="bg-cortes-red text-white text-center py-2 px-3 rounded-xl text-xs font-bold shadow-xs">
+                &ldquo;Crear mi regalo familiar &rarr;&rdquo;
+              </div>
+            </div>
+
+            <p class="text-[11px] text-slate-600 leading-snug">
+              <strong>Justificación:</strong> El botón apela directamente al afecto del obsequio navideño y el sentido de pertenencia familiar, logrando un CTR significativamente más alto que &ldquo;Enviar&rdquo; o &ldquo;Registrarse&rdquo;.
+            </p>
+          </div>
+
+          <!-- Box 4: DATO REQUERIDO (Blue Theme matching deliverable template) -->
+          <div class="p-4 sm:p-5 rounded-2xl border-2 border-[#3B82F6] bg-[#EFF6FF] space-y-2.5 shadow-xs relative">
+            <!-- Dotted Connector Indicator pointing from Dato to Browser (Desktop) -->
+            <div class="hidden lg:block absolute -left-6 top-1/2 -translate-y-1/2 text-blue-600 font-bold text-lg select-none">
+              &lsaquo;&dash;&dash;
+            </div>
+
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                <!-- User Profile / ID Icon -->
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-black text-sm text-[#1E40AF] uppercase tracking-wide">4. DATO REQUERIDO</h3>
+              </div>
+            </div>
+
+            <div class="text-[11px] text-slate-700 leading-snug">
+              Información requerida para personalizar y contactar al usuario:
+            </div>
+
+            <ul class="text-xs text-slate-700 space-y-1.5 leading-relaxed">
+              <li class="flex items-start gap-1.5">
+                <span class="text-blue-600 font-bold">&bull;</span>
+                <span><strong>Nombre completo</strong> (trato personalizado y dedicatoria)</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-blue-600 font-bold">&bull;</span>
+                <span><strong>Apellido de la familia</strong> (graba el empaque oficial)</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-blue-600 font-bold">&bull;</span>
+                <span><strong>Correo electrónico</strong> (envío del archivo HD y remarketing)</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-blue-600 font-bold">&bull;</span>
+                <span><strong>Provincia en R.D.</strong> (sorteo y entrega de canastas)</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Box 5: KPI (Pink/Rose Theme matching deliverable template) -->
+          <div class="p-4 sm:p-5 rounded-2xl border-2 border-[#EC4899] bg-[#FDF2F8] space-y-2 shadow-xs relative">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-[#DB2777] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                <!-- Bar Chart Icon -->
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-black text-sm text-[#9D174D] uppercase tracking-wide">5. KPI</h3>
+              </div>
+            </div>
+
+            <div class="text-xs text-slate-700 leading-snug">
+              <strong>Indicador clave para medir el éxito de la página.</strong>
+            </div>
+
+            <div class="text-[11px] text-slate-600 leading-relaxed">
+              Mide la captación de leads cualificados (7,200 registros esperados con un 16% de tasa de conversión).
+            </div>
+
+            <!-- Downward Dotted Indicator pointing to Bottom KPI Card (Desktop) -->
+            <div class="hidden lg:block absolute -bottom-6 left-1/2 -translate-x-1/2 text-pink-600 font-bold text-sm select-none">
+              &darr;
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- BOTTOM ROW: EXACT REPLICA OF PROFESSOR'S KPI PRINCIPAL & EXPLICACIÓN -->
+      <!-- =================================================================== -->
+      <div class="pt-6 border-t border-slate-200">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          
+          <!-- LEFT CARD: KPI PRINCIPAL (WITH 3 CIRCULAR METRIC PILLS) -->
+          <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-4">
+            <div class="text-xs font-black uppercase tracking-wider text-[#EC4899] text-center sm:text-left">
+              KPI PRINCIPAL
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              
+              <!-- Metric Pill 1: Conversiones -->
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-full bg-[#FCE7F3] text-[#DB2777] flex items-center justify-center font-bold text-base shrink-0">
+                  <!-- Users icon -->
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v1h8v-1zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 16.5a4.5 4.5 0 00-2.5-3.9 5.002 5.002 0 013.5 3.9v.5h-1v-.5zM4 16.5v.5H3v-.5a5.002 5.002 0 013.5-3.9A4.5 4.5 0 004 16.5z"/>
+                  </svg>
+                </div>
+                <div class="space-y-0.5">
+                  <div class="font-extrabold text-xs text-slate-900 leading-tight">Conversiones</div>
+                  <div class="text-[11px] font-semibold text-slate-700">(Leads generados)</div>
+                  <div class="text-[10px] text-slate-500 leading-tight">Cantidad de formularios completados: <strong>7,200</strong>.</div>
+                </div>
+              </div>
+
+              <!-- Metric Pill 2: Tasa de Conversión -->
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-full bg-[#FCE7F3] text-[#DB2777] flex items-center justify-center font-extrabold text-base shrink-0">
+                  %
+                </div>
+                <div class="space-y-0.5">
+                  <div class="font-extrabold text-xs text-slate-900 leading-tight">Tasa de conversión</div>
+                  <div class="text-[10px] text-slate-600 font-mono leading-tight">(Conversiones / Visitas) &times; 100</div>
+                  <div class="text-[10px] text-slate-500 leading-tight">Ejemplo: 7,200 de 45,000 visitas = <strong>16%</strong>.</div>
+                </div>
+              </div>
+
+              <!-- Metric Pill 3: Meta -->
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-full bg-[#FCE7F3] text-[#DB2777] flex items-center justify-center font-bold text-base shrink-0">
+                  <!-- Trend line icon -->
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                  </svg>
+                </div>
+                <div class="space-y-0.5">
+                  <div class="font-extrabold text-xs text-slate-900 leading-tight">Meta</div>
+                  <div class="text-[10px] text-slate-500 leading-tight">Generar <strong>1,200 leads / mes</strong> con una tasa de conversión mínima del <strong>15%</strong>.</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- RIGHT CARD: EXPLICACIÓN GENERAL (LIGHTBULB ICON & PROCESS PIPELINE) -->
+          <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-3">
+            <div class="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#1B365D]">
+              <span class="text-amber-500 text-base">💡</span>
+              <span>EXPLICACIÓN GENERAL</span>
+            </div>
+            
+            <p class="text-xs text-slate-700 leading-relaxed">
+              El usuario ve el anuncio en <strong>Instagram</strong> &rarr; hace clic &rarr; llega a la <strong>página de destino</strong> &rarr; encuentra la personalización relevante de <strong>Chocolate Embajador</strong> &rarr; completa el formulario &rarr; nosotros obtenemos sus datos &rarr; medimos el resultado con el <strong>KPI</strong>.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- 5 NUMERICAL OBJECTIVES AT 6 MONTHS (README.TXT REQUIREMENTS)         -->
+      <!-- =================================================================== -->
+      <div class="pt-6 border-t border-slate-200 space-y-4">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div>
+            <h3 class="text-lg font-black text-slate-900 tracking-tight">
+              5 Objetivos Numéricos a 6 Meses
+            </h3>
+            <p class="text-xs text-slate-500">
+              Métricas y proyecciones requeridas formalmente en el README.txt de la tarea académica
+            </p>
+          </div>
+          <button onclick="toggleTeacherJPG()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3.5 py-1.5 rounded-lg text-xs transition-colors border border-slate-300">
+            Comparar con Imagen del Profesor
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl text-center">
+            <div class="text-xl font-black text-cortes-red">45,000</div>
+            <div class="text-xs font-bold text-slate-800 mt-0.5">Visitas a la Página</div>
+            <div class="text-[10px] text-slate-500">Sesiones estimadas</div>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl text-center">
+            <div class="text-xl font-black text-indigo-700">38,000</div>
+            <div class="text-xs font-bold text-slate-800 mt-0.5">Visitantes Únicos</div>
+            <div class="text-[10px] text-slate-500">Usuarios en RD y diáspora</div>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl text-center">
+            <div class="text-xl font-black text-emerald-700">7,200</div>
+            <div class="text-xs font-bold text-slate-800 mt-0.5">Leads Generados</div>
+            <div class="text-[10px] text-slate-500">Empaques descargados</div>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl text-center">
+            <div class="text-xl font-black text-amber-700">16 %</div>
+            <div class="text-xs font-bold text-slate-800 mt-0.5">Tasa de Conversión</div>
+            <div class="text-[10px] text-slate-500">(7,200 &divide; 45,000) &times; 100</div>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl text-center col-span-2 sm:col-span-1">
+            <div class="text-xl font-black text-rose-700">2m 30s</div>
+            <div class="text-xs font-bold text-slate-800 mt-0.5">Duración Media</div>
+            <div class="text-[10px] text-slate-500">En simulador y sorteo</div>
+          </div>
+        </div>
+
+        <div id="teacherJPGWrapper" class="hidden text-center pt-2">
+          <img src="ejemplo_mapa_visual.jpg" alt="Ejemplo de entrega de mapa visual" class="max-w-full h-auto mx-auto rounded-xl border border-slate-300 shadow-md"/>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 3: DOCUMENTO FORMAL & ESTRATÉGICO                                    -->
+  <!-- ========================================================================= -->
+  <section id="viewDocPage" class="view-container hidden bg-white text-slate-800 py-12 px-4 sm:px-6 flex-grow">
+    <div class="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
+      
+      <div class="border-b border-slate-200 pb-6">
+        <span class="text-xs font-bold text-cortes-red uppercase tracking-widest block">
+          Documento Estratégico de Campaña
+        </span>
+        <h2 class="text-3xl font-black text-slate-900 mt-1">
+          Chocolate Embajador: La Tradición Lleva tu Apellido
+        </h2>
+        <p class="text-slate-500 text-xs mt-1">
+          Propuesta de captación digital mediante landing page interactiva · Cortés Hermanos &amp; Co.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-cortes-red">1. Marca y concepto</h3>
+        <p>
+          La marca seleccionada es <strong>Cortés Hermanos</strong> con su producto insignia <strong>Chocolate Embajador</strong>. La propuesta plantea una activación decembrina centrada en la personalización, la nostalgia y la tradición dominicana de regalar y compartir en Nochebuena.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-cortes-red">2. Objetivo general</h3>
+        <p>
+          Captar 7,200 leads cualificados y fortalecer el posicionamiento emocional de Cortés Hermanos permitiendo a los usuarios diseñar una envoltura con su apellido a cambio de sus datos de contacto y provincia.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-cortes-red">3. Justificación de los 5 elementos</h3>
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#120806] text-white">
+              <tr>
+                <th class="p-3">Elemento</th>
+                <th class="p-3">Justificación Estratégica</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="p-3 font-bold text-cortes-red">Contenido</td>
+                <td class="p-3">Render interactivo 3D de la tableta de chocolate con envoltura en pan de oro y apellido personalizado en vivo.</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-bold text-cortes-red">Canal</td>
+                <td class="p-3">Instagram Ads, Facebook Ads y botones de compartir en WhatsApp para viralización familiar.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-cortes-red">CTA</td>
+                <td class="p-3">&ldquo;Crear mi regalo familiar &rarr;&rdquo;. Enfatiza el valor afectivo en lugar de una transacción fría.</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-bold text-cortes-red">Dato Requerido</td>
+                <td class="p-3">Apellido (personalización de barra), Nombre (trato directo), Correo (remarketing) y Provincia (distribución regional).</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-cortes-red">KPI Principal</td>
+                <td class="p-3">7,200 leads generados (16% de conversión sobre 45,000 visitas estimadas).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FESTIVE SUCCESS CELEBRATION MODAL -->
+  <div id="celebrationModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-[#1C0D0A] text-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border-2 border-cortes-gold/40 shadow-2xl space-y-6 relative overflow-hidden">
+      
+      <!-- Festive ambient glow -->
+      <div class="absolute -top-24 -right-24 w-56 h-56 bg-cortes-red/30 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-56 h-56 bg-cortes-gold/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Header with Close button -->
+      <div class="flex items-start justify-between relative z-10">
+        <div class="flex items-center gap-3">
+          <img src="assets/cortes-logo-gold.svg" alt="Cortés Hermanos" class="h-6 w-auto block"/>
+          <span class="text-xs uppercase font-bold tracking-widest text-cortes-gold">Colección Navidad 2026</span>
+        </div>
+        <button onclick="closeCelebrationModal()" class="text-white/60 hover:text-white text-2xl font-bold leading-none p-1 transition-colors">&times;</button>
+      </div>
+
+      <!-- Main Modal Content -->
+      <div class="space-y-3 text-center relative z-10">
+        <div class="w-14 h-14 mx-auto rounded-full bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-black text-2xl shadow-lg">
+          🎁
+        </div>
+        <h3 class="text-2xl font-black text-white tracking-tight">
+          ¡Tu Envoltura de Colección está lista!
+        </h3>
+        <p class="text-sm text-white/80 max-w-sm mx-auto leading-relaxed">
+          Se ha descargado automáticamente a tu dispositivo la envoltura oficial de alta resolución para la <strong class="text-cortes-gold dynamicFamilySurnameWithPrefix">FAMILIA PÉREZ</strong>.
+        </p>
+      </div>
+
+      <!-- Mini Sleeve Card Preview inside Modal -->
+      <div class="relative z-10 bg-gradient-to-br from-[#500812] to-[#250308] border border-cortes-gold/60 p-4 rounded-2xl text-center space-y-2 shadow-inner">
+        <div class="text-[10px] font-bold text-cortes-gold uppercase tracking-wider">CORTÉS HERMANOS &amp; CO. · CHOCOLATE EMBAJADOR</div>
+        <div class="text-xs text-white/70 font-medium">Edición Especial de Navidad 2026</div>
+        <div class="text-xl font-black text-white py-1 uppercase tracking-wider font-serif dynamicFamilySurnameWithPrefix">
+          FAMILIA PÉREZ
+        </div>
+        <div class="text-[11px] italic text-cortes-gold font-serif">&ldquo;El sabor de estar juntos&rdquo;</div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-3 relative z-10 pt-1">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button onclick="downloadCustomSleevePNG()" class="w-full bg-cortes-red hover:bg-[#8F1627] text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md transition-all">
+            <span>📥</span>
+            <span>Descargar de nuevo</span>
+          </button>
+          <button onclick="shareViaWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md transition-all">
+            <span>💬</span>
+            <span>Compartir en WhatsApp</span>
+          </button>
+        </div>
+
+        <a href="https://www.instagram.com/corteshnosrd/" target="_blank" rel="noopener noreferrer" class="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all group">
+          <svg class="w-4 h-4 text-pink-400 group-hover:scale-110 transition-transform shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span>Visítanos en Instagram @corteshnosrd</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PRIVACY POLICY MODAL -->
+  <div id="privacyPolicyModal" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+    <div class="bg-white text-slate-800 rounded-2xl max-w-md w-full p-6 sm:p-8 border border-slate-200 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-extrabold text-cortes-red">Política de Privacidad y Términos</h3>
+        <button onclick="closePrivacyModal()" class="text-slate-400 hover:text-slate-700 text-xl font-bold">&times;</button>
+      </div>
+      <div class="text-xs text-slate-600 space-y-2 leading-relaxed max-h-72 overflow-y-auto">
+        <p><strong>1. Uso de datos:</strong> Los datos personales (Nombre, Apellido, Correo y Provincia) serán utilizados exclusivamente para la personalización de la envoltura digital de Chocolate Embajador y la emisión de boletos para el sorteo de canastas navideñas.</p>
+        <p><strong>2. Cortés Hermanos &amp; Co.:</strong> Garantiza que la información suministrada no será transferida ni comercializada con terceros.</p>
+        <p><strong>3. Sorteos:</strong> Los sorteos se llevarán a cabo en diciembre 2026 y los ganadores recibirán su canasta sin costo de envío dentro del territorio dominicano.</p>
+      </div>
+      <div class="text-right pt-2 border-t">
+        <button onclick="closePrivacyModal()" class="bg-cortes-red text-white text-xs font-bold px-4 py-2 rounded-lg">
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT CONTROLLERS -->
+  <script>
+    // Tab Switching Controller (Landing vs Wireframe vs Document)
+    function switchMainView(view) {
+      const vLanding = document.getElementById('viewLandingPage');
+      const vWireframe = document.getElementById('viewWireframePage');
+      const vDoc = document.getElementById('viewDocPage');
+
+      const bLanding = document.getElementById('btnNavLanding');
+      const bWireframe = document.getElementById('btnNavWireframe');
+      const bDoc = document.getElementById('btnNavDoc');
+
+      const activeBtnClass = "px-3.5 py-1.5 rounded-md font-bold transition-all bg-cortes-red text-white shadow-sm flex items-center gap-1.5";
+      const inactiveBtnClass = "px-3.5 py-1.5 rounded-md font-bold transition-all text-white/70 hover:text-white flex items-center gap-1.5";
+
+      vLanding.classList.add('hidden');
+      vWireframe.classList.add('hidden');
+      vDoc.classList.add('hidden');
+
+      bLanding.className = inactiveBtnClass;
+      bWireframe.className = inactiveBtnClass;
+      bDoc.className = inactiveBtnClass;
+
+      if (view === 'landing') {
+        vLanding.classList.remove('hidden');
+        bLanding.className = activeBtnClass;
+      } else if (view === 'wireframe') {
+        vWireframe.classList.remove('hidden');
+        bWireframe.className = activeBtnClass;
+      } else if (view === 'doc') {
+        vDoc.classList.remove('hidden');
+        bDoc.className = activeBtnClass;
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Preview Mode Toggle: Barra de Chocolate 3D (Predeterminada) vs Envoltura Plana
+    let currentPreviewMode = '3d';
+
+    function switchPreviewMode(mode) {
+      currentPreviewMode = mode;
+      const c3D = document.getElementById('preview3DContainer');
+      const cSleeve = document.getElementById('previewSleeveContainer');
+      const b3D = document.getElementById('btnView3D');
+      const bSleeve = document.getElementById('btnViewSleeve');
+
+      if (!cSleeve || !c3D || !bSleeve || !b3D) return;
+
+      const activeClass = 'px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-gold text-brand-ink shadow-sm flex items-center gap-1.5 transition-all';
+      const inactiveClass = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/10 text-white/70 hover:text-white hover:bg-white/20 transition-all flex items-center gap-1.5';
+
+      if (mode === '3d') {
+        c3D.classList.remove('hidden');
+        cSleeve.classList.add('hidden');
+        b3D.className = activeClass;
+        bSleeve.className = inactiveClass;
+      } else {
+        cSleeve.classList.remove('hidden');
+        c3D.classList.add('hidden');
+        bSleeve.className = activeClass;
+        b3D.className = inactiveClass;
+      }
+    }
+
+    // Form Submission: Updates the 3D bar, generates download, and opens celebration modal
+    function handleLiveFormSubmit() {
+      const nombreInput = document.getElementById('leadNombre');
+      const apellidoInput = document.getElementById('leadApellido');
+      const provinciaSelect = document.getElementById('leadProvincia');
+
+      const nombre = nombreInput && nombreInput.value.trim() ? nombreInput.value.trim() : 'Rosa';
+      const apellido = apellidoInput && apellidoInput.value.trim() ? apellidoInput.value.trim().toUpperCase() : 'PÉREZ';
+      const provincia = provinciaSelect && provinciaSelect.value ? provinciaSelect.value : 'Distrito Nacional';
+
+      // 1. Update 3D Chocolate Bar Surname
+      const barSurname = document.getElementById('bar3DFamilySurname');
+      if (barSurname) {
+        barSurname.textContent = apellido;
+        barSurname.classList.add('scale-110', 'text-amber-600');
+        setTimeout(() => {
+          barSurname.classList.remove('scale-110', 'text-amber-600');
+        }, 500);
+      }
+
+      // 2. Update Flat Sleeve & Other occurrences
+      document.querySelectorAll('.dynamicFamilySurname').forEach(el => {
+        el.textContent = apellido;
+      });
+
+      document.querySelectorAll('.dynamicFamilySurnameWithPrefix').forEach(el => {
+        el.textContent = `FAMILIA ${apellido}`;
+      });
+
+      document.querySelectorAll('.dynamicDedication').forEach(el => {
+        el.textContent = `Para: ${nombre} ${apellido}`;
+      });
+
+      document.querySelectorAll('.dynamicProvinceLabel').forEach(el => {
+        el.textContent = `${provincia}, Rep. Dom.`;
+      });
+
+      const noticeSurnameEl = document.getElementById('successNoticeSurname');
+      if (noticeSurnameEl) noticeSurnameEl.textContent = `Familia ${apellido}`;
+
+      // 3. Trigger High-Resolution Canvas Download
+      downloadCustomSleevePNG();
+
+      // 4. Show Festive Success Modal
+      const modal = document.getElementById('celebrationModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    // Attach listeners on load (NO REAL-TIME INPUT LISTENERS)
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set initial 3D bar mode
+      switchPreviewMode('3d');
+
+      // Check initial hash
+      const hash = window.location.hash;
+      if (hash === '#wireframe' || hash === '#mapa') {
+        switchMainView('wireframe');
+      } else if (hash === '#doc') {
+        switchMainView('doc');
+      }
+    });
+
+    // High-Resolution Custom Packaging Sleeve PNG Generation (HTML5 Canvas)
+    // ALWAYS renders and downloads the Official Collection Sleeve (1800x1200 HD PNG)
+    function downloadCustomSleevePNG() {
+      const apellido = (document.getElementById('leadApellido') ? document.getElementById('leadApellido').value.trim().toUpperCase() : '') || 'PÉREZ';
+      const nombre = (document.getElementById('leadNombre') ? document.getElementById('leadNombre').value.trim() : '') || 'Rosa';
+      const provincia = (document.getElementById('leadProvincia') ? document.getElementById('leadProvincia').value : '') || 'Distrito Nacional';
+
+      const canvas = document.getElementById('sleeveCanvas');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      const w = 1800;
+      const h = 1200;
+      canvas.width = w;
+      canvas.height = h;
+
+      function renderSleeve(logoToDraw) {
+        // 1. Fondo Borgoña / Vino Lujoso
+        const grad = ctx.createLinearGradient(0, 0, w, h);
+        grad.addColorStop(0, '#6A0E1A');
+        grad.addColorStop(0.45, '#420810');
+        grad.addColorStop(1, '#1A060A');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        // Resplandor cálido central
+        const radGrad = ctx.createRadialGradient(w / 2, h / 2, 50, w / 2, h / 2, 700);
+        radGrad.addColorStop(0, 'rgba(170, 30, 50, 0.32)');
+        radGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = radGrad;
+        ctx.fillRect(0, 0, w, h);
+
+        // 2. Doble Recuadro Dorado Perimetral
+        ctx.strokeStyle = '#D4AF37';
+        ctx.lineWidth = 8;
+        ctx.strokeRect(45, 45, w - 90, h - 90);
+
+        ctx.strokeStyle = 'rgba(212, 175, 55, 0.45)';
+        ctx.lineWidth = 2.5;
+        ctx.strokeRect(65, 65, w - 130, h - 130);
+
+        // Esquinas doradas decorativas
+        ctx.fillStyle = '#D4AF37';
+        ctx.fillRect(40, 40, 18, 18);
+        ctx.fillRect(w - 58, 40, 18, 18);
+        ctx.fillRect(40, h - 58, 18, 18);
+        ctx.fillRect(w - 58, h - 58, 18, 18);
+
+        // 3. Logo Oficial de Cortés Hermanos en Oro
+        if (logoToDraw) {
+          const logoW = 220;
+          const logoH = 82;
+          ctx.drawImage(logoToDraw, w / 2 - logoW / 2, 105, logoW, logoH);
+        } else {
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#D4AF37';
+          ctx.font = 'bold 28px "Plus Jakarta Sans", sans-serif';
+          ctx.fillText('CORTÉS HERMANOS & CO.', w / 2, 145);
+        }
+
+        // Subtítulo oficial de marca
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#D4AF37';
+        ctx.font = 'bold 20px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('CORTÉS HERMANOS & CO. · REPÚBLICA DOMINICANA', w / 2, 220);
+
+        // Título Principal: Chocolate Embajador
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '900 78px "Playfair Display", Georgia, serif';
+        ctx.fillText('Chocolate Embajador', w / 2, 310);
+
+        // Línea dorada divisoria
+        ctx.strokeStyle = '#D4AF37';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(w / 2 - 210, 345);
+        ctx.lineTo(w / 2 + 210, 345);
+        ctx.stroke();
+
+        // 4. Placa Central de la Familia
+        const plaqueW = 1100;
+        const plaqueH = 390;
+        const plaqueX = w / 2 - plaqueW / 2;
+        const plaqueY = 430;
+
+        // Fondo oscuro de la placa
+        ctx.fillStyle = 'rgba(15, 4, 7, 0.78)';
+        ctx.fillRect(plaqueX, plaqueY, plaqueW, plaqueH);
+
+        // Doble marco dorado en placa
+        ctx.strokeStyle = '#D4AF37';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(plaqueX, plaqueY, plaqueW, plaqueH);
+
+        ctx.strokeStyle = 'rgba(212, 175, 55, 0.35)';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(plaqueX + 10, plaqueY + 10, plaqueW - 20, plaqueH - 20);
+
+        // Texto dentro de la Placa
+        ctx.fillStyle = '#EAD186';
+        ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('EDICIÓN ESPECIAL DE NAVIDAD 2026', w / 2, plaqueY + 80);
+
+        // Apellido de la Familia (Auto-escala si es muy largo)
+        ctx.fillStyle = '#FFFFFF';
+        let surnameSize = 98;
+        if (apellido.length > 9) surnameSize = 80;
+        if (apellido.length > 13) surnameSize = 64;
+        ctx.font = `900 ${surnameSize}px "Playfair Display", Georgia, serif`;
+        ctx.fillText(`FAMILIA ${apellido}`, w / 2, plaqueY + 215);
+
+        // Lema Tradicional
+        ctx.fillStyle = '#D4AF37';
+        ctx.font = 'italic 34px "Playfair Display", Georgia, serif';
+        ctx.fillText('"El sabor de estar juntos"', w / 2, plaqueY + 310);
+
+        // 5. Dedicatoria y Provincia
+        ctx.fillStyle = '#FFE088';
+        ctx.font = 'bold 26px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText(`Para: ${nombre} ${apellido} · ${provincia}, Rep. Dom.`, w / 2, 920);
+
+        // 6. Pie Tradición
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        ctx.font = '500 24px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('Cacao 100% Dominicano · Tradición de Nuestras Familias desde 1929', w / 2, 1020);
+
+        // Disparar Descarga
+        const link = document.createElement('a');
+        link.download = `Chocolate_Embajador_Familia_${apellido}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      }
+
+      // Preload logo if needed
+      const logoImg = new Image();
+      logoImg.crossOrigin = 'anonymous';
+      logoImg.src = 'assets/cortes-logo-gold.svg';
+      if (logoImg.complete && logoImg.naturalWidth > 0) {
+        renderSleeve(logoImg);
+      } else {
+        logoImg.onload = () => renderSleeve(logoImg);
+        logoImg.onerror = () => renderSleeve(null);
+      }
+    }
+
+    // Share on WhatsApp
+    function shareViaWhatsApp() {
+      const surname = document.getElementById('leadApellido').value.trim().toUpperCase() || 'PÉREZ';
+      const text = encodeURIComponent(`¡Mira la envoltura navideña de Chocolate Embajador personalizada para la FAMILIA ${surname}! 🍫🎄 Personaliza la tuya aquí: ${window.location.href}`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
+    // Celebration Modal Controls
+    function closeCelebrationModal() {
+      const modal = document.getElementById('celebrationModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // Privacy Modal Controls
+    function openPrivacyModal() {
+      document.getElementById('privacyPolicyModal').classList.remove('hidden');
+    }
+    function closePrivacyModal() {
+      document.getElementById('privacyPolicyModal').classList.add('hidden');
+    }
+
+    // Teacher JPG Toggle
+    function toggleTeacherJPG() {
+      document.getElementById('teacherJPGWrapper').classList.toggle('hidden');
+    }
+
+    // Check hash on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash;
+      if (hash === '#wireframe' || hash === '#mapa') {
+        switchMainView('wireframe');
+      } else if (hash === '#doc') {
+        switchMainView('doc');
+      }
+    });
+  </script>
+</body>
+</html>
